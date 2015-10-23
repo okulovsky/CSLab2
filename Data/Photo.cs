@@ -23,6 +23,10 @@ namespace MyPhotoshop
             {
                 return data[x, y];
             }
+            set
+            {
+                data[x, y] = value;
+            }
         }
 	}
 }
