@@ -34,5 +34,13 @@ namespace MyPhotoshop
             if (value>1) return 1;
             return value;
         }
+
+        public static Pixel operator *(Pixel pixel, double c)
+        {
+            return new Pixel(
+                Trim(pixel.R * c),
+                Trim(pixel.G * c),
+                Trim(pixel.B * c));
+        }
     }
 }
