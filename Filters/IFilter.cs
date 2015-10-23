@@ -1,6 +1,6 @@
 using System;
 
-namespace Lab2
+namespace MyPhotoshop
 {
 	public class ParameterInfo
 	{

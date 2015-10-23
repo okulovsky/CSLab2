@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace Lab2
+namespace MyPhotoshop
 {
 	public static class Convertors
 	{
