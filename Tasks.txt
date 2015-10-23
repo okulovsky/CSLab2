@@ -68,16 +68,19 @@ data[x,y,c] - это значение канала c (c=0 - красный, c=1 
 не нужен. Однако, это задание даст возможность попрактиковаться в теме интерфейсов и 
 классов, а также создаст почву для последующих улучшений.
 
-- создайте интерфейс ISettings с методами 
-  ParameterInfo[] GetDesсription(), возвращающим описание настроке
-  void Parse(double[]).
-- создайте класс LighteningSettings с полем Coefficient, и метод Parse, который бы 
-  устанавливал это поле в нулевой значение массива. Аналогично с GrayscaleSettings.
-- создайте класс SettableFilter, который бы имел поле ISettings settings, устанавливаемый 
+- создайте интерфейс IParameters - по смыслу, это интерфейс класса, который содержит настройки какого-то фильтра.
+  В этом интерфейсе определите методы:
+    ParameterInfo[] GetDesсription(), который будет возвращать информацию о настройках
+    void Parse(double[]), который будет устанавливать поля класса в соответствие с массивом переданных величин
+- создайте класс LighteningParameters с полем Coefficient, реализующий IParameters.
+  Реализуйте метод Parse так, чтобы он устанавливал это поле в нулевой значение массива. 
+  Аналогично с GrayscaleParameters.
+- создайте класс ParametrizedFilter, который бы имел поле IParameters parameters, устанавливаемый 
   в конструкторе.
-- Метод SettableFilter.GetParameters() перенаправьте на settings.GetDescription()
-- сделайте абстрактный метод SettableFilter.Process(ISettings settings)
-- В методе SettableFilter.Process(double[]) вызовите settings.Parse и затем Process(settings)
+- Метод ParametrizedFilter.GetParameters() перенаправьте на settings.GetDescription()
+- сделайте абстрактный метод ParametrizedFilter.Process(Photo photo, IParameters parameters)
+- В методе ParametrizedFilter.Process(Photo, double[]) вызовите settings.Parse и затем
+  ParametrizedFilter.Process(Photo, settings)
 - выведите PixelFilter из SettableFilter и заставьте все заработать
 
 
