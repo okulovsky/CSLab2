@@ -17,6 +17,7 @@ namespace MyPhotoshop
 		{
 			return "Осветление/затемнение";
 		}
+
 		
 		public Photo Process(Photo original, double[] parameters)
 		{
@@ -30,9 +31,9 @@ namespace MyPhotoshop
 					for (int z=0;z<3;z++)
                     {
                         result.data[x, y] = new Pixel();
-                        result.data[x, y].R = original.data[x, y].R * parameters[0];
-                        result.data[x, y].G = original.data[x, y].G * parameters[0];
-                        result.data[x, y].B = original.data[x, y].B * parameters[0];
+                        result.data[x, y].R = Pixel.Trim(original.data[x, y].R * parameters[0]);
+                        result.data[x, y].G = Pixel.Trim(original.data[x, y].G * parameters[0]);
+                        result.data[x, y].B = Pixel.Trim(original.data[x, y].B * parameters[0]);
                     }
 						
 			return result;
