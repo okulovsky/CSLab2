@@ -7,10 +7,7 @@ namespace MyPhotoshop
 	{
 		public static Photo Bitmap2Photo(Bitmap bmp)
 		{
-			var photo=new Photo();
-			photo.width=bmp.Width;
-			photo.height=bmp.Height;
-			photo.data=new Pixel[bmp.Width,bmp.Height];
+			var photo=new Photo(bmp.Width,bmp.Height);
 			for (int x=0;x<bmp.Width;x++)
 				for (int y=0;y<bmp.Height;y++)
 				{
@@ -32,7 +29,7 @@ namespace MyPhotoshop
 		
 		public static Bitmap Photo2Bitmap(Photo photo)
 		{
-			var bmp=new Bitmap(photo.width,photo.height);
+			var bmp=new Bitmap(photo.Width,photo.Height);
 			for (int x=0;x<bmp.Width;x++)
 				for (int y=0;y<bmp.Height;y++)
 					bmp.SetPixel(x,y,Color.FromArgb (
