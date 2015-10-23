@@ -18,19 +18,23 @@ namespace MyPhotoshop
 			return "Осветление/затемнение";
 		}
 
-		
-		public Photo Process(Photo original, double[] parameters)
-		{
-			var result=new Photo(original.Width,original.Height);
-			
-			for (int x=0;x<result.Width;x++)
-				for (int y=0;y<result.Height;y++)
-					for (int z=0;z<3;z++)
-                    {
-                        result[x, y] = original[x, y] * parameters[0];
-                    }
-			return result;
-		}
+
+        public Photo Process(Photo original, double[] parameters)
+        {
+            var result = new Photo(original.Width, original.Height);
+
+            for (int x = 0; x < result.Width; x++)
+                for (int y = 0; y < result.Height; y++)
+                    for (int z = 0; z < 3; z++)
+                        result[x, y] = ProcessPixel(original[x, y], parameters);
+
+            return result;
+        }
+
+        public Pixel ProcessPixel(Pixel original, double[] parameters)
+        {
+            return original * parameters[0];
+        }
 	}
 }
 
