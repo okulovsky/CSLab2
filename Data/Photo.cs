@@ -6,7 +6,7 @@ namespace MyPhotoshop
 	{
 		public int width;
 		public int height;
-		public double[,,] data;
+		public Pixel[,] data;
 	}
 }
 
