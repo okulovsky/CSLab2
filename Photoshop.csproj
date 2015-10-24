@@ -40,7 +40,6 @@
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Data\Pixel.cs" />
     <Compile Include="Filters\EmptyParameters.cs" />
-    <Compile Include="Filters\GrayscaleFilter.cs" />
     <Compile Include="Filters\IParameters.cs" />
     <Compile Include="Filters\LighteningParameters.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="Data\Photo.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Data\Convertors.cs" />
-    <Compile Include="Filters\LighteningFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

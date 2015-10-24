@@ -9,8 +9,17 @@ namespace MyPhotoshop
 		public static void Main (string[] args)
 		{
 			var window=new MainWindow();
-			window.AddFilter (new LighteningFilter());
-            window.AddFilter(new GrayscaleFilter());
+
+            var lighteningFilter = new PixelFilter<LighteningParameters>("Осветление/затемнение", (pixel,parameters)=>pixel*parameters.Coefficient);
+            window.AddFilter(lighteningFilter);
+
+            var grayscaleFilter = new PixelFilter<EmptyParameters>("Оттенки серого", 
+                (original,parameters)=>
+                {
+                    var gray = 0.299 * original.R + 0.587 * original.G + 0.114 * original.B;
+                    return new Pixel(gray, gray, gray);
+                });
+            window.AddFilter(grayscaleFilter);
 			Application.Run (window);
 		}
 	}
