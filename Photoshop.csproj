@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\IParametersExtensions.cs" />
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Data\Pixel.cs" />
     <Compile Include="Filters\EmptyParameters.cs" />
