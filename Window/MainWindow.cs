@@ -40,11 +40,7 @@ namespace MyPhotoshop
             Text="Photoshop pre-alpha release";
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 
-            Menu = new MainMenu(new[] {
-                new MenuItem("Открыть JPG",new EventHandler(OpenJPEG)),
-                new MenuItem("Открыть MyFormat",new EventHandler(OpenMyFormat)),
-                new MenuItem("Сохранить MyFormat",new EventHandler(SaveMyFormat))
-             });
+            
 
             LoadBitmap((Bitmap)Image.FromFile("cat.jpg"));
 		}
@@ -71,37 +67,14 @@ namespace MyPhotoshop
 
             ClientSize = new Size(filtersSelect.Right + 20, processed.Bottom);
 
-            apply.Left = ClientSize.Width - 100;
+            apply.Left = ClientSize.Width - 120;
             apply.Top = ClientSize.Height - 50;
-            apply.Width = 80;
+            apply.Width = 100;
             apply.Height = 40;
 
             FilterChanged(null, EventArgs.Empty);
         }
 
-        void OpenJPEG(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = Directory.GetCurrentDirectory();
-            dlg.Filter = "(*.jpg) JPEG files|*.jpg";
-            if (dlg.ShowDialog() != DialogResult.OK)
-                return;
-            var bmp = (Bitmap)Image.FromFile(dlg.FileName);
-            LoadBitmap(bmp);
-        }
-
-        void OpenMyFormat(object sender, EventArgs e)
-        {
-            var ph = Files.Open();
-            if (ph == null) return;
-            var bmp = Convertors.Photo2Bitmap(ph);
-            LoadBitmap(bmp);
-        }
-
-        void SaveMyFormat(object sender, EventArgs e)
-        {
-            Files.Save(originalPhoto);
-        }
         		
 		public void AddFilter(IFilter filter)
 		{
