@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filters\Transform\FreeTransformer.cs" />
+    <Compile Include="Filters\IParametersExtensions.cs" />
     <Compile Include="Filters\Transform\ITransformer.cs" />
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Data\Pixel.cs" />
