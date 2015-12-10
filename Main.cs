@@ -6,6 +6,7 @@ namespace MyPhotoshop
 {
 	class MainClass
 	{
+
         [STAThread]
 		public static void Main (string[] args)
 		{
@@ -14,16 +15,32 @@ namespace MyPhotoshop
 
 
 
-            var mirrorHorizontal = new TransformFilter("Отразить по горизонтали",
-                size => size,
-                (oldSize, point) => new Point(oldSize.Width - point.X-1, point.Y)
+            var mirrorHorizontal = new TransformFilter<EmptyParameters>("Отразить по горизонтали",
+                (size, parameters) => size,
+                (oldSize, point, parameters) => new Point(oldSize.Width - point.X-1, point.Y)
                 );
             window.AddFilter(mirrorHorizontal);
 
-            var rotateClockwise = new TransformFilter("Повернуть против ч.с.",
-                size => new Size(size.Height, size.Width),
-                (oldSize, point) => new Point(point.Y, point.X)
-                );
+            Func<Size, RotateParameters, Size> sizeRotator = (size, parameters) =>
+                {
+                    var angle = Math.PI * parameters.Angle / 180;
+                    return new Size(
+                    (int)(size.Width * Math.Abs(Math.Cos(angle)) + size.Height * Math.Abs(Math.Sin(angle))),
+                    (int)(size.Height * Math.Abs(Math.Cos(angle)) + size.Width * Math.Abs(Math.Sin(angle))));
+                };
+
+            Func<Size,Point,RotateParameters,Point?> pointRotator = (oldSize, point, parameters)=>
+                {
+                    var newSize = sizeRotator(oldSize,parameters);
+                    var angle = Math.PI*parameters.Angle/180;
+                    point=new Point(point.X-newSize.Width/2,point.Y-newSize.Height/2);                                                                              
+                    var x = oldSize.Width/2 + (int)(point.X*Math.Cos(angle)+point.Y*Math.Sin(angle));
+                    var y = oldSize.Height/2 + (int)(-point.X*Math.Sin(angle)+point.Y*Math.Cos(angle));
+                    if (x<0 || x>=oldSize.Width || y<0 || y>=oldSize.Height) return null;
+                    return new Point(x,y);
+                };
+
+            var rotateClockwise = new TransformFilter<RotateParameters>("Повернуть", sizeRotator, pointRotator);
             window.AddFilter(rotateClockwise);
 
             var lighteningFilter = new PixelFilter<LighteningParameters>("Осветление/затемнение", (pixel, parameters) => pixel * parameters.Coefficient);

@@ -44,6 +44,7 @@
     <Compile Include="Filters\LighteningParameters.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
     <Compile Include="Filters\PixelFilter.cs" />
+    <Compile Include="Filters\RotateParameters.cs" />
     <Compile Include="Filters\TransformFilter.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Window\MainWindow.cs">
