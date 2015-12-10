@@ -15,11 +15,11 @@ namespace MyPhotoshop
 
 
 
-            //var mirrorHorizontal = new TransformFilter<EmptyParameters>("Отразить по горизонтали",
-            //    (size, parameters) => size,
-            //    (oldSize, point, parameters) => new Point(oldSize.Width - point.X-1, point.Y)
-            //    );
-            //window.AddFilter(mirrorHorizontal);
+            var mirrorHorizontal = new TransformFilter<EmptyParameters>("Отразить по горизонтали",
+                (size, parameters) => size,
+                (oldSize, point, parameters) => new Point(oldSize.Width - point.X - 1, point.Y)
+                );
+            window.AddFilter(mirrorHorizontal);
 
             var rotateClockwise = new TransformFilter<RotateParameters>("Повернуть", new RotateTransformer());
             window.AddFilter(rotateClockwise);

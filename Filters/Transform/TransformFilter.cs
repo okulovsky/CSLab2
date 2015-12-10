@@ -23,6 +23,10 @@ namespace MyPhotoshop
             this.transformer = transformer;
         }
 
+        public TransformFilter(string name, Func<Size, TParameters, Size> sizeTransformer, Func<Size, Point, TParameters, Point?> pointTransformer)
+            : this(name, new FreeTransformer<TParameters> { SizeTransformer = sizeTransformer, PointTransformer = pointTransformer })
+        { }
+
         public override Photo Process(Photo original, TParameters parameters)
         {
 
