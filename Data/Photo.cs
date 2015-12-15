@@ -4,8 +4,8 @@ namespace MyPhotoshop
 {
 	public class Photo
 	{
-		public readonly int width;
-		public readonly int height;
+		public readonly int Width;
+		public readonly int Height;
 		private readonly Pixel[,] data;
 
 		public Pixel this[int x, int y]
@@ -16,8 +16,8 @@ namespace MyPhotoshop
 
 		public Photo(int width, int height)
 		{
-			this.width = width;
-			this.height = height;
+			this.Width = width;
+			this.Height = height;
 			data = new Pixel[width, height];			
 		}
 	}

@@ -32,7 +32,7 @@ namespace MyPhotoshop
 
 		public static Bitmap Photo2Bitmap(Photo photo)
 		{
-			var bmp = new Bitmap(photo.width, photo.height);
+			var bmp = new Bitmap(photo.Width, photo.Height);
 			for (int x = 0; x < bmp.Width; x++)
 				for (int y = 0; y < bmp.Height; y++)
 					bmp.SetPixel(x, y, Color.FromArgb(
