@@ -135,10 +135,10 @@ namespace MyPhotoshop
 			Photo result=null;
      		result=filter.Process(originalPhoto,data);
 	        var resultBmp=Convertors.Photo2Bitmap(result);
-			if (result.Width>originalPhoto.Width || result.Height>originalPhoto.Height)
+			if (resultBmp.Width>originalBmp.Width || resultBmp.Height>originalBmp.Height)
 			{
-				float k = Math.Min((float)original.Width / result.Width, (float)original.Height / result.Height);
-				var newBmp = new Bitmap((int)(result.Width*k), (int)(result.Height*k));
+                float k = Math.Min((float)originalBmp.Width / resultBmp.Width, (float)originalBmp.Height / resultBmp.Height);
+                var newBmp = new Bitmap((int)(resultBmp.Width * k), (int)(resultBmp.Height * k));
 				using(var g = Graphics.FromImage(newBmp))
 				{
 					g.DrawImage(resultBmp, new Rectangle(0, 0, newBmp.Width, newBmp.Height), new Rectangle(0, 0, resultBmp.Width, resultBmp.Height), GraphicsUnit.Pixel);
