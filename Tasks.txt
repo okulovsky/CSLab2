@@ -77,15 +77,13 @@ data[x,y,c] - это значение канала c (c=0 - красный, c=1 
   Аналогично с GrayscaleParameters.
 - создайте класс ParametrizedFilter, который бы имел поле IParameters parameters, устанавливаемый 
   в конструкторе.
-- Метод ParametrizedFilter.GetParameters() перенаправьте на settings.GetDescription()
+- Метод ParametrizedFilter.GetParameters() перенаправьте на parameters.GetDescription()
 - сделайте абстрактный метод ParametrizedFilter.Process(Photo photo, IParameters parameters)
-- В методе ParametrizedFilter.Process(Photo, double[]) вызовите settings.Parse и затем
-  ParametrizedFilter.Process(Photo, settings)
-- выведите PixelFilter из SettableFilter и заставьте все заработать
+- В методе ParametrizedFilter.Process(Photo, double[]) вызовите parameters.Parse и затем
+  ParametrizedFilter.Process(Photo, parameters)
+- выведите PixelFilter из ParametrizedFilter и заставьте все заработать
 
-Часть 3. Продвинутые техники
-
-Задание 1. Дженерики
+Задание 5. Дженерики
 
 - сделайте ParametrizedFilter дженерик-классом, принимающий дженерик-параметр, реализующий IParameters
 - протащите дженерик-параметр вниз по иерархии в PixelFilter
@@ -93,14 +91,29 @@ data[x,y,c] - это значение канала c (c=0 - красный, c=1 
 - создавайте новый объект параметров каждый раз при использовании
 - уберите даункаст в LighteningFilter
 
-Задание 2. Делегаты
+Часть 3. Делегаты
+
+Задание 1. Делегаты
 
 - замените в PixelFilter наследование на делегирование: этот класс должен принимать имя фильтра и функцию,
   которая принимает пиксель и параметры и возвращает пиксель
 - вместо абстрактного метода ProcessPixel, вы будете вызывать эту функцию
 - уберите классы LighteningFilter, GrayscaleFilter, заменив их на объекты PixelFilter с подходящей функцией
 
-Задание 3. Рефлексия
+Задание 2. Больше делегатов
+
+- добавьте TransformFilter, который будет выполнять преобразование изображений. Организуйте его по образцу PixelFilter
+- TransformFilter должен принимать в конструкторе sizeTransform (функцию, превращающую старый размер в новый) и
+  pointTransform (функция, показывающая, из какой точки старого изображения брать новую)
+- создайте объекты TransformFilter для отражения изображения по горизонтали и его поворот на 90 градусов по часовой стрелке
+
+Задание 3. Свободное вращение
+
+- создайте объект TransformFilter для поворота изображения на произвольное число градусов
+
+Часть 4. Рефлексия типов
+
+Задание 1. Рефлексия
 
 Цель - сделать так, чтобы не приходилось реализовывать методы Parse и GetDescription в каждой новой реализации
 интерфейса IParameters
