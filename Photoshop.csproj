@@ -39,10 +39,11 @@
   <ItemGroup>
     <Compile Include="Data\Pixel.cs" />
     <Compile Include="Filters\EmptyParameters.cs" />
-    <Compile Include="Filters\IParameters.cs" />
+    <Compile Include="Filters\Parameters\IParameters.cs" />
     <Compile Include="Filters\LighteningParameters.cs" />
-    <Compile Include="Filters\ParameterInfo.cs" />
-    <Compile Include="Filters\ParametrizedFilter.cs" />
+    <Compile Include="Filters\Parameters\ParameterInfo.cs" />
+    <Compile Include="Filters\Parameters\ParametersExtensions.cs" />
+    <Compile Include="Filters\Parameters\ParametrizedFilter.cs" />
     <Compile Include="Filters\PixelFilter.cs" />
     <Compile Include="Filters\Transform\FreeTransformer.cs" />
     <Compile Include="Filters\Transform\ITransformer.cs" />
